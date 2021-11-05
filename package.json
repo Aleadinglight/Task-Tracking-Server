@@ -1,0 +1,24 @@
+{
+  "name": "task-tracking-server",
+  "version": "1.0.0",
+  "description": "server for task tracking app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aleadinglight/Task-Tracking-Server.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "MongoDB"
+  ],
+  "author": "Tam Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aleadinglight/Task-Tracking-Server/issues"
+  },
+  "homepage": "https://github.com/Aleadinglight/Task-Tracking-Server#readme"
+}
