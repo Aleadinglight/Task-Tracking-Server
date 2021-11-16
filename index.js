@@ -1,10 +1,13 @@
 const express = require('express')
 const app = express()
+const database = require('./src/database/myMongoose')
 require('dotenv').config()
+
+// Import database 
+database();
 
 app.use(express.json());
 app.set('json spaces', 2)
-
 app.get("/", (req, res) => {
   res.send('Hello World!')
 });
