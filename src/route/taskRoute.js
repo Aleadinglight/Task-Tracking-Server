@@ -1,5 +1,4 @@
 const express = require('express')
-const { v4: uuidv4 } = require('uuid')
 const router = express.Router()
 const Task = require('../model/task')
 
@@ -37,6 +36,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Middleware to get the task
 getTask = async (req, res, next) => {
   try {
     task = await Task.findById(req.params.id);
@@ -56,12 +56,56 @@ getTask = async (req, res, next) => {
   next();
 }
 
-// Get task using id
+// Get a task
 router.get('/:id', getTask, async (req, res) => {
   try {
     res.status(200).send(req.task);
   } catch (err) {
     res.send(`Error when getting task with id: ${req.params.id}. ${err}`);
+  }
+});
+
+// Delete a task
+router.delete('/:id', getTask, async (req, res) => {
+  try {
+    await req.task.remove();
+    res.json({
+      message: 'Delete Subscriber'
+    })
+  }
+  catch (err) {
+    res.status(500).send({
+      message: err.message
+    })
+  }
+});
+
+// Update a task
+router.patch('/:id', getTask, async (req, res) => {
+  try {
+    if (req.body.name != null) {
+      req.task.name = req.body.name;
+    }
+    if (req.body.description != null) {
+      req.task.description = req.body.description;
+    }
+    if (req.body.priority != null) {
+      req.task.priority = req.body.priority;
+    }
+    if (req.body.status != null) {
+      req.task.status = req.body.status;
+    }
+    if (req.body.due != null) {
+      req.task.due = req.body.due;
+    }
+
+    const updateTask = await req.task.save();
+    res.send(updateTask)
+  }
+  catch (err) {
+    res.status(500).send({
+      message: err.message
+    })
   }
 });
 
