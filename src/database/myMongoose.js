@@ -1,17 +1,20 @@
 const mongoose = require('mongoose');
+const { mongo } = require('../config/vars');
 
-const getDB = async () => {
+const connectToDB = async () => {
   try {
-    const connection = await mongoose.connect(process.env.DB_URI, {
+    const connection = await mongoose.connect(mongo.url, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     });
 
     console.log(`Successfully connected to mongoose.`);
-  }
-  catch (err) {
+    return connection;
+  } catch (err) {
     console.log(`Error while connecting to mongoose. ${err}`);
   }
-}
+};
 
-module.exports = getDB;
+module.exports = {
+  connect: connectToDB,
+};
