@@ -12,6 +12,7 @@
     },
     "rules": {
         "linebreak-style": 0,
-        "indent": "off"
+        "indent": ["warn", 2],
+        "object-curly-spacing": "off"
     }
 }
