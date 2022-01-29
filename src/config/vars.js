@@ -15,7 +15,7 @@ const envVarsSchema = joi
       .required(),
     PORT: joi
       .number()
-      .postive()
+      .positive()
       .default(3000),
     JWT_TOKEN: joi
       .string()
@@ -53,7 +53,7 @@ if (error) {
 module.exports = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
-  mongoose: {
+  mongo: {
     url: envVars.MONGODB_URL,
   },
   jwt: {
