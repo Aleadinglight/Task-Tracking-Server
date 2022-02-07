@@ -1,9 +1,15 @@
 const Task = require('../model/task');
 
-/**
- * Return a list of all tasks
+/** Express router providing user related routes
+ * @module controller/taskController
  */
 
+/**
+ * Get a list of all task
+ * @param {express.Request} req - Express request
+ * @param {express.Response} res - Express response
+ * @return {Array.<module:model/taskModel~taskSchema>} - Array of task objects
+ */
 exports.getAll = async (req, res) => {
   try {
     const tasks = await Task.find();
@@ -17,8 +23,10 @@ exports.getAll = async (req, res) => {
 
 /**
  * Create a new task
+ * @param {express.Request} req - Express request
+ * @param {express.Response} res - Express response
+ * @return {module:model/taskModel~taskSchema} - Return the newly created task object
  */
-
 exports.create = async (req, res) => {
   try {
     const task = new Task({
@@ -40,8 +48,10 @@ exports.create = async (req, res) => {
 
 /**
  * Middleware for finding a task using id
+ * @param {express.Request} req - Express request
+ * @param {express.Response} res - Express response
+ * @param {express.Next} next - Express next function
  */
-
 exports.find = async (req, res, next) => {
   try {
     task = await Task.findById(req.params.id);
@@ -62,8 +72,10 @@ exports.find = async (req, res, next) => {
 
 /**
  * Return a task using id
+ * @param {express.Request} req - Express request
+ * @param {express.Response} res - Express response
+ * @return {module:model/taskModel~taskSchema} - Return the task with corresponding id
  */
-
 exports.get = async (req, res) => {
   try {
     res.status(200).send(req.task);
@@ -74,13 +86,15 @@ exports.get = async (req, res) => {
 
 /**
  * Delete a task using id
+ * @param {express.Request} req - Express request
+ * @param {express.Response} res - Express response
+ * @return {Object} - Return an Object containing a message field informing the status of the delete operation
  */
-
 exports.delete = async (req, res) => {
   try {
     await req.task.remove();
     res.json({
-      message: 'Delete Subscriber',
+      message: 'Deleted task',
     });
   } catch (err) {
     res.status(500).send({
@@ -90,9 +104,10 @@ exports.delete = async (req, res) => {
 };
 
 /**
- * Update a task with id
+ * @param {express.Request} req - Express request
+ * @param {express.Response} res - Express response
+ * @return {module:model/taskModel~taskSchema} - Return the updated task
  */
-
 exports.update = async (req, res) => {
   try {
     if (req.body.name != null) {
