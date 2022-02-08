@@ -13,7 +13,7 @@ const Task = require('../model/task');
 exports.getAll = async (req, res) => {
   try {
     const tasks = await Task.find();
-    res.send(tasks);
+    res.status(200).send(tasks);
   } catch (err) {
     res.status(500).send({
       message: err.message,
@@ -93,7 +93,7 @@ exports.get = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     await req.task.remove();
-    res.json({
+    res.status(200).json({
       message: 'Deleted task',
     });
   } catch (err) {
