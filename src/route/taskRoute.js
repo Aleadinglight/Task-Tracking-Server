@@ -12,32 +12,32 @@ const controller = require('../controller/taskController');
  * @const
  * @namespace taskRouter
  */
-  const router = new express.Router();
+const router = new express.Router();
 
 /**
- * GET endpoint/task/
+ * GET endpoint/tasks/
  * @name get
  * @function
  * @memberof module:router/tasks~taskRouter
  * @inner
- * @param {('task/')} path - Express path
+ * @param {string} path - Express path
  * @param {module:controller/taskController.getAll} middleware - Express middleware.
  */
 router.get('/', controller.getAll);
 
 /**
- * POST endpoint/task/
+ * POST endpoint/tasks/
  * @name post
  * @function
  * @memberof module:router/tasks~taskRouter
  * @inner
- * @param {'task/'} path - Express path
+ * @param {string} path - Express path
  * @param {module:controller/taskController.create} middleware - Express middleware.
  */
 router.post('/', controller.create);
 
 /**
- * GET endpoint/get/:id
+ * GET endpoint/tasks/:id
  * @name get
  * @function
  * @memberof module:router/tasks~taskRouter
@@ -48,7 +48,7 @@ router.post('/', controller.create);
 router.get('/:id', controller.find, controller.get);
 
 /**
- * DELETE endpoint/task/:id
+ * DELETE endpoint/tasks/:id
  * @name delete
  * @function
  * @memberof module:router/tasks~taskRouter
@@ -59,7 +59,7 @@ router.get('/:id', controller.find, controller.get);
 router.delete('/:id', controller.find, controller.delete);
 
 /**
- * PATCH endpoint/task/:id
+ * PATCH endpoint/tasks/:id
  * @name patch
  * @function
  * @memberof module:router/tasks~taskRouter
