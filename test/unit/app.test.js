@@ -10,7 +10,7 @@ describe('Test the root path', () => {
   });
 });
 
-describe('Test the task api', () => {
+describe('Test valid task api', () => {
   beforeAll((done) => {
     database.connect();
     done();
@@ -24,7 +24,7 @@ describe('Test the task api', () => {
       });
   });
 
-  newTaskId = '';
+  fakeTaskId = '';
   test('Create task should return status code 201', () => {
     return request(app)
       .post('/tasks')
@@ -50,6 +50,20 @@ describe('Test the task api', () => {
       });
   });
 
+  updateTaskName = 'Test update task';
+  test('Update newly create task should return status code 200', () => {
+    return request(app)
+      .patch('/tasks/' + newTaskId)
+      .send({
+        name: updateTaskName,
+        description: 'update task',
+      })
+      .then((res) => {
+        expect(res.statusCode).toBe(200);
+        expect(res.body.name).toBe(updateTaskName);
+      });
+  });
+
   test('Delete task should return status code 200', () => {
     return request(app)
       .delete('/tasks/' + newTaskId)
@@ -58,9 +72,46 @@ describe('Test the task api', () => {
       });
   });
 
-  test('Delete a task twice should return status code 404', () => {
+  afterAll((done) => {
+    database.disconnect();
+    done();
+  });
+});
+
+/*
+describe('Test invalid task api', () => {
+  beforeAll((done) => {
+    database.connect();
+    done();
+  });
+
+  fakeTaskId = '6201b753e38df7ad277c6e81';
+
+  test('Get fake create task should return status code 404', () => {
     return request(app)
-      .delete('/tasks/' + newTaskId)
+      .get('/tasks/' + fakeTaskId)
+      .then((res) => {
+        expect(res.statusCode).toBe(404);
+      });
+  });
+
+  updateTaskName = 'Test update task';
+  test('Update fake create task should return status code 404', () => {
+    return request(app)
+      .patch('/tasks/' + fakeTaskId)
+      .send({
+        name: updateTaskName,
+        description: 'update task',
+      })
+      .then((res) => {
+        expect(res.statusCode).toBe(404);
+        expect(res.body.name).toBe(updateTaskName);
+      });
+  });
+
+  test('Delete fake task should return status code 404', () => {
+    return request(app)
+      .delete('/tasks/' + fakeTaskId)
       .then((res) => {
         expect(res.statusCode).toBe(404);
       });
@@ -71,3 +122,4 @@ describe('Test the task api', () => {
     done();
   });
 });
+*/
