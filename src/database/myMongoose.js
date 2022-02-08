@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 const { mongo } = require('../config/vars');
 
+let connection = null;
+
 const connectToDB = async () => {
   try {
-    const connection = await mongoose.connect(mongo.url, {
+    connection = await mongoose.connect(mongo.url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -15,6 +17,11 @@ const connectToDB = async () => {
   }
 };
 
+const disconnect = async (callback) => {
+  await connection.disconnect(callback);
+};
+
 module.exports = {
   connect: connectToDB,
+  disconnect: disconnect,
 };
