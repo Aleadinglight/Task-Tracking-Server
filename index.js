@@ -1,4 +1,4 @@
-const app = require('./src/config/app')
+const app = require('./src/config/app');
 const database = require('./src/database/myMongoose');
 const { port } = require('./src/config/vars');
 

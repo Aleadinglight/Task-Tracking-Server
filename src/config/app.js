@@ -17,4 +17,4 @@ app.get('/', (req, res) => {
 
 app.use('/tasks', taskRoute);
 
-module.exports = app
+module.exports = app;
