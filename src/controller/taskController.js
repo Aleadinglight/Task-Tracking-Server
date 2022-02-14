@@ -54,20 +54,19 @@ exports.create = async (req, res) => {
  */
 exports.find = async (req, res, next) => {
   try {
-    task = await Task.findById(req.params.id);
+    const task = await Task.findById(req.params.id);
     if (task == null) {
       return res.status(404).send({
         message: `Cannot find task with id=${req.params.id}`,
       });
     }
+    req.task = task;
+    next();
   } catch (err) {
     return res.status(500).send({
       message: err.message,
     });
   }
-
-  req.task = task;
-  next();
 };
 
 /**
