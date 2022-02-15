@@ -7,9 +7,12 @@ A REST API server for the [Task Tracking](https://github.com/Aleadinglight/Task-
 ### Requirements
 
 This project was built with:
-    - Express.js
-    - MongoDB
-    - Mongoose
+-   [Express.js](https://expressjs.com/)
+-   [MongoDB](https://www.mongodb.com/)
+-   [Mongoose](https://mongoosejs.com/)
+-   [JsDoc](https://jsdoc.app/)
+-   [Jest](https://jestjs.io/)
+
 
 ### Installation
 
