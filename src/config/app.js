@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const taskRoute = require('../route/taskRoute');
 const corsOptions = require('./corsOption');
+const apiRoute = require('../route/apiRoute');
 
 const app = express();
 // Enable CORS
@@ -15,6 +15,6 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.use('/tasks', taskRoute);
+app.use('/api', apiRoute);
 
 module.exports = app;

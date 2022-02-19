@@ -2,7 +2,7 @@ const express = require('express');
 const controller = require('../controller/taskController');
 
 /** Module providing task related routes
- * @module router/tasks
+ * @module router/api/tasks
  * @requires express
  */
 

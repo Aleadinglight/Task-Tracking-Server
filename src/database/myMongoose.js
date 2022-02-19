@@ -10,7 +10,7 @@ const connectToDB = async () => {
       useUnifiedTopology: true,
     });
 
-    console.log(`Successfully connected to mongoose.`);
+    // console.log(`Successfully connected to mongoose.`);
     return connection;
   } catch (err) {
     console.log(`Error while connecting to mongoose. ${err}`);
@@ -18,7 +18,10 @@ const connectToDB = async () => {
 };
 
 const disconnect = async (callback) => {
+  // Disconnect this connection
   await connection.disconnect(callback);
+  // Run .close() on all connection in parallel
+  await mongoose.disconnect();
 };
 
 module.exports = {
