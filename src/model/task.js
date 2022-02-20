@@ -15,19 +15,19 @@ const mongoose = require('mongoose');
 const taskSchema = new mongoose.Schema({
   name: {
     type: String,
-    default: 'unknown',
+    required: true,
   },
   description: {
     type: String,
-    default: 'unknown',
+    require: true,
   },
   priority: {
     type: String,
-    default: '0',
+    require: true,
   },
   status: {
     type: String,
-    default: '0',
+    require: true,
   },
   due: {
     type: Date,
