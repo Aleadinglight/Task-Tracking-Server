@@ -1,3 +1,4 @@
+/* eslint-disable space-before-function-paren */
 const mongoose = require('mongoose');
 
 /**
@@ -8,8 +9,8 @@ const mongoose = require('mongoose');
  * @constructor
  * @property {string} name - Name of the task
  * @property {string} description - Detail description of the task
- * @property {string} priority - Priority of the task
- * @property {string} status - Status of the task
+ * @property {Number} priority - Priority of the task
+ * @property {Number} status - Status of the task
  * @property {Date} due - Due time of the task
  */
 const taskSchema = new mongoose.Schema({
@@ -19,15 +20,27 @@ const taskSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    require: true,
+    required: true,
   },
   priority: {
-    type: String,
-    require: true,
+    type: Number,
+    required: true,
+    validate: {
+      validator: function (value) {
+        return value >= 0 && value < 3;
+      },
+      message: (props) => `${props.value} is not a valid priority!`,
+    },
   },
   status: {
-    type: String,
-    require: true,
+    type: Number,
+    required: true,
+    validate: {
+      validator: function (value) {
+        return value >= 0 && value < 2;
+      },
+      message: (props) => `${props.value} is not a valid status!`,
+    },
   },
   due: {
     type: Date,
