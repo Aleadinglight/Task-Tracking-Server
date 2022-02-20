@@ -27,7 +27,7 @@ const taskSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: function (value) {
-        return value >= 0 && value < 3;
+        return value >= 0 && value < 4;
       },
       message: (props) => `${props.value} is not a valid priority!`,
     },
@@ -37,7 +37,7 @@ const taskSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: function (value) {
-        return value >= 0 && value < 2;
+        return value >= 0 && value < 3;
       },
       message: (props) => `${props.value} is not a valid status!`,
     },
