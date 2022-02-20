@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "docs": "jsdoc -r ./src/ && start ./out/index.html",
-    "test": "jest --forceExit",
+    "test": "jest --runInBand",
     "start": "nodemon index.js"
   },
   "repository": {
@@ -38,7 +38,7 @@
     "babel-preset-env": "^1.7.0",
     "eslint": "^8.8.0",
     "eslint-config-google": "^0.14.0",
-    "jest": "^27.5.0",
+    "jest": "^27.5.1",
     "jsdoc": "^3.6.10",
     "superagent": "^7.1.1",
     "supertest": "^6.2.2"

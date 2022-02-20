@@ -24,3 +24,25 @@ $ cd Task-Tracking-Web
 $ npm install
 $ npm start
 ```
+
+### Testing the application
+
+Run all test
+
+```bash
+$ npm test 
+```
+
+Run one single test
+
+```bash
+$ npm test database.test.js
+```
+
+### Documentation
+
+To build and open the docs run
+
+```bash
+$ npm docs
+```
